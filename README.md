@@ -1,39 +1,68 @@
-# Basico
+# 03 Github branch
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
+In this example we are going to create a production server using Github pages.
 
-## Development server
+We will start from `02-azure-ftp`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Steps to build it
 
-## Code scaffolding
+- `npm install` to install previous sample packages:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install
+```
 
-## Build
+- Using previous application, we upload it using [Github Pages](https://pages.github.com/). We only need to create a new repository.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+> NOTE: In this case we won't use `express server` to serve front app, because Github Pages has its own server.
 
-## Running unit tests
+- Upload files:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+git init
+git remote add origin git@github.com...
+git add .
+git commit -m "initial commit"
+git push -u origin master
+```
 
-## Running end-to-end tests
+- Run build command:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm run build
+```
 
-## Further help
+- Create a new branch called `gh-pages`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Remove all files except `dist` folder. And move `dist` folder's files to root path. We should have on root path:
 
-## Uso:
+```
+|- images
+|- js
+|- index.html
 
-Accede al contenido mediante el botón de login del menú superior:
-usuario: master8@lemoncode.net
-contraseña: 12345678
+```
 
-Solo está implementado el botón de login, el logout y la navegación con el resto de botones pero no hay más contenido.
+- Upload files:
 
-En el servicio se ha implementado el login, el logout, y la recogida de datos del usuario logeado mediante el uso de localStorage como método para persistir los datos.
+```bash
+git add .
+git commit -m "upload files"
+git push -u origin gh-pages
+```
 
-En layout hay dos componentes: publicheader y privateheader que solo son contenedores del menú, no tienen más función que esa, podría haber dejado el publicmenu y el privatemenu directamente sobre un header o el navbar que he creado. Por darle uso, he puesto que aparezca el nombre de usuario en el privateheader cuando se conecta el usuario.
+- Now, we have deployed our website in: `https://<user-name>.github.io/<repository-name>`:
+
+![01-open-gh-pages-url](./readme-resources/01-open-gh-pages-url.png)
+
+> NOTE: We can change branch name on Settings tab > GitHub Pages section
+
+# About Basefactor + Lemoncode
+
+We are an innovating team of Javascript experts, passionate about turning your ideas into robust products.
+
+[Basefactor, consultancy by Lemoncode](http://www.basefactor.com) provides consultancy and coaching services.
+
+[Lemoncode](http://lemoncode.net/services/en/#en-home) provides training services.
+
+For the LATAM/Spanish audience we are running an Online Front End Master degree, more info: http://lemoncode.net/master-frontend
